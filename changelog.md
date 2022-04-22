@@ -16,8 +16,10 @@
 #modified:
     - commented out bw and using diceware instead to generate passphrase 
     - updated script local location and scp for script 
+
 - added function:
     - function for cloudflare_cert generation
+    
 - removed
     - removed loops for adding cloudflare pem and key as they were not loading properly. User will be directed to a open file and can past and close
 
