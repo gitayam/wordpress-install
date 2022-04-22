@@ -19,12 +19,12 @@
 
 - added function:
     - function for cloudflare_cert generation
-    
+
 - removed
     - removed loops for adding cloudflare pem and key as they were not loading properly. User will be directed to a open file and can past and close
 
 ## Date: 20220122 UpdatedBy: sac ###########
-#modified:
+ - modified:
     - echo " "> file changed to echo " " | sudo tee -a file
     - ~/dir changed to $HOME/dir see: https://github.com/koalaman/shellcheck/wiki/SC2088
     - /dir/path changed to "/dir/path"
@@ -35,7 +35,7 @@
     - change argument from $@ to $* https://github.com/koalaman/shellcheck/wiki/SC2145
     - added quotes on all arguments https://github.com/koalaman/shellcheck/wiki/SC2068
 
-#removed: 
+ - removed: 
     - user variable removed and replaced with $USER
 
 ## Date: 20211009 UpdatedBy: Sac ###########
