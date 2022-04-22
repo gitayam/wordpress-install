@@ -96,8 +96,6 @@ create_alias_function(){
         sddd chmod 777 /var/www/*/wp-content
     }
     ' | sudo tee -a /etc/bash.bashrc
-
-    
 }
 #debug-option
 debug_function aliases creation
@@ -811,7 +809,7 @@ nginx_install_function(){
             "index": "index.php"
         }
     }
-}
+    }
     ' "$path" "$path"|sudo tee -a /etc/nginx/sites-available/"${domain}".conf
 
     #create a copy and ln in sites available
@@ -846,7 +844,7 @@ install_maria_db_function(){
         read -p sql_passPlain
         sql_pass=$(printf "%s" "$sql_passPlain"|sha256sum|base64|head -c 22)
     fi
-#---------------required installs
+    #---------------required installs
     echo -e "processing...."
     echo -e "installing mariadb-server ufw php php7.3-mysql "
     sudo apt install mariadb-server ufw php php7.3-mysql -y &> /dev/null
@@ -878,7 +876,7 @@ install_maria_db_function(){
     sudo mariadb -e "CREATE DATABASE $db_name DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;"
     sudo mariadb -e "GRANT ALL PRIVILEGES ON $db_name.* TO '$domain'@'localhost' IDENTIFIED BY '$sql_pass';"
     sudo mariadb -e "FLUSH PRIVILEGES;"
-##---------- Dynamic Server Creation
+    ##---------- Dynamic Server Creation
     if  [[ "$server" == "none" || "$server" == "both" ]] ;then
     ###if neither nginx or apache are detected then prompt user to select which one
         echo "server not detected"
