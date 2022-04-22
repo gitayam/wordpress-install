@@ -1067,10 +1067,10 @@ setup_WP_function(){
     #create primary Menu
     sudo wp --allow-root --path="$path" menu create "main menu"
     if [ "$alt_user_set" == false ];then
-        sudo wp --allow-root --path="$path" menu item add-custom main-menu "Google-Me" "https://www.google.com/search?q=${domain}+instagram+OR+facebook+OR+twitter+OR+reddit+OR+photos"
+        sudo wp --allow-root --path="$path" menu item add-custom main-menu "$domain socials" "https://www.google.com/search?q=${domain}+instagram+OR+facebook+OR+twitter+OR+reddit+OR+photos"
     else
     #assume alt_user was defined and user alt User as the query
-    sudo wp --allow-root --path="$path" menu item add-custom main-menu "Google-Me" "https://www.google.com/search?q=${alt_user}+instagram+OR+facebook+OR+twitter+OR+reddit+OR+photos+${domain}"
+    sudo wp --allow-root --path="$path" menu item add-custom main-menu "$domain socials" "https://www.google.com/search?q=${alt_user}+instagram+OR+facebook+OR+twitter+OR+reddit+OR+photos+${domain}"
     fi
     #assign created menu as primary
     sudo wp --allow-root --path="$path" menu location assign main-menu primary-menu
