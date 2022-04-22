@@ -3,15 +3,28 @@ generate mariadb, apache or nginx server, and configure a basic wordpress websit
 
 
 # Install Configure and Use
+## Install 
+Make sure `git` is installed and use the following command:
+`git clone https://github.com/gitayam/wordpress-install.git && chmod 755 wp-install.sh`
 
+## Configure
+
+## Use
+Receive prompts for all attributes 
+`sudo ./wp-install`
+Identify Domain
+`sudo ./wp-install website.com`
+Fix Permissions for Wordpress
+`sudo ./wp-install website.com -p` or `sudo ./wp-install website.com --permissions`
+Update servers and all wordpress plugins and themes for all domains
+`sudo ./wp-install website.com -u` or `sudo ./wp-install website.com --update`
 
 
 # Change Log
 #created 20210311
-#lastUpdate 20220205
-script_name="wp-install-20220415.sh"
+#lastUpdate 20220405
 
-########### DATE: date UpdatedBy: name ###########
+## Date: date UpdatedBy: name ###########
 #modified:
         #
     #added var:
@@ -20,7 +33,8 @@ script_name="wp-install-20220415.sh"
         #
     #removed
         #
-########### DATE: 20220205 UpdatedBy: sac ###########
+
+## Date: 20220205 UpdatedBy: sac ###########
 #modified:
         #commented out bw and using diceware instead to generate passphrase 
         #updated script local location and scp for script 
@@ -28,7 +42,8 @@ script_name="wp-install-20220415.sh"
         #function for cloudflare_cert generation
     #removed
         #removed loops for adding cloudflare pem and key as they were not loading properly. User will be directed to a open file and can past and close
-########### DATE: 20220122 UpdatedBy: sac ###########
+
+## Date: 20220122 UpdatedBy: sac ###########
 #modified:
         #echo " "> file changed to echo " " | sudo tee -a file
         #~/dir changed to $HOME/dir see: https://github.com/koalaman/shellcheck/wiki/SC2088
@@ -42,10 +57,12 @@ script_name="wp-install-20220415.sh"
 
 #removed: 
         #user variable removed and replaced with $USER
-########### DATE: 20211009 UpdatedBy: Sac ###########
+
+## Date: 20211009 UpdatedBy: Sac ###########
     #added function:
         #added a check in case menu for -u to send update command over ssh if macos is detected
-########### DATE: 20210912 UpdatedBy: Sac ###########  
+
+## Date: 20210912 UpdatedBy: Sac ###########  
     #modified:
         #installPlugin function now handles all args using loop to iterate through plugins to install
         #exit codes updated to reflect correct standards
@@ -53,12 +70,14 @@ script_name="wp-install-20220415.sh"
             #exit 3 became exit 2
     #removed
         # var for default plugins
-########### DATE: 20210905 UpdatedBy: Sac ###########
+
+## Date: 20210905 UpdatedBy: Sac ###########
 #modified:
         # nginx function to work with wordpress , still working on it, adding nginx unit
         #fix_WP_permissions_function added to several locations instead of the 
         #modified default menu item link to google search
-########### DATE: 20210904 UpdatedBy: Sac ###########
+
+## Date: 20210904 UpdatedBy: Sac ###########
     #modified:
         #$(date) to $((date))
         #change log format
@@ -78,7 +97,8 @@ script_name="wp-install-20220415.sh"
     #removed
         #script description and dev notes
 
-########### DATE: 20210903 UpdatedBy: Sac ###########
+
+## Date: 20210903 UpdatedBy: Sac ###########
     #updated widget remove
     #created Random Password Generator for base and alternate user account
     #prompt user for cloudflare pem and key prior to configuring apache
