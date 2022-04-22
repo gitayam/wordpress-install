@@ -163,7 +163,6 @@ user_input_simple_function(){
     
     db_name="${domain//-/}db"
     admin_email="${domain}@${email_domain}"
-    #default admin user is domain base name with 314 added
     admin_user="${domain}"
     base_pass=$(diceware -n 5)
     #admin_pass=$(printf $base_pass|sha256sum|base64|head -c 22)
@@ -477,53 +476,12 @@ install_certs_function(){
         fi
 }
 
-instaloader_function(){
-    debug_function "$FUNCNAME"
-    main_ig_user=" " ig username used to scrape user content
-    ##simple input only requires url and server type to function
-    check_simple_input_function
-    #make sure pip3 is installed
-    echo "installing python3 pip for instaloader"
-    sudo apt install python3-pip -y &> /dev/null
-    #make sure instaloader is installed
-    pip3 install instaloader
 
-    #prompt user for ig username and store it as variable
-    echo "Instagram username (cannot be private account): "
-    read -r IG_username
-    
-    #make directory with ig username
-    instagram_directory="${content_path}/uploads/${IG_username}"
-    sudo mkdir "$instagram_directory"
-    #download ig pictures
-    sudo instaloader --login $main_ig_user "$IG_username" --dirname-pattern "$instagram_directory"
-    echo -e "content downloaded"
-    #remove json files
-    sudo rm "$instagram_directory"/*.json.xz
-    sudo chmod 777 "$content_path"
-    for i in "${instagram_directory}"/*.jpg;do 
-        image_name_txt=$(sudo cat "${content_path}/${i%.*}.txt" ) ## create a variable from the image base name to txt.
-        cd "$content_path" || exit
-        sudo mv "$i" "$image_name_txt"
-    done
-    #import media which has been added to the server 
-    sudo wp --allow-root --path="$path" media import "$instagram_directory"/*.jpg --alt="$IG_username" --caption="For more content go to https://instagram.com/$IG_username"
-}
-
-import_pictures_function(){
-    debug_function "$FUNCNAME"
-    ##simple input only requires url and server type to function
-    check_simple_input_function
-    echo "Directory of uploaded media: html/wp-content/uploads/[directory_Name]: "
-    read -r IG_media_directory
-    ###pending
-    sudo wp --allow-root --path="$path" media import "${content_path}"/uploads/"$IG_media_directory"/*
-  }
 
 WP_update_function(){
     debug_function "$FUNCNAME"
     ##simple input only requires url and server type to function
-check_simple_input_function
+    check_simple_input_function
     echo "starting Wordpress Updates..."
     sudo wp --allow-root --path="$path" plugin update --all
     sudo wp --allow-root --path="$path" theme update --all
@@ -569,7 +527,7 @@ install_divi_function(){
         sudo cp -R "$cpPath"/Divi "$content_path"/themes/
     fi
 
-#########create Child Theme
+    #########create Child Theme
     #create divi-child theme
     sudo mkdir -p "$cpPath"/divi-child
     #make style sheet
@@ -656,14 +614,14 @@ plugin_theme_config_function(){
 delete_comments_function(){
     debug_function "$FUNCNAME"
     ##simple input only requires url and server type to function
-check_simple_input_function
+    check_simple_input_function
     #delete default page, post and comments
     sudo wp --allow-root --path="$path" comment delete "$(sudo wp --allow-root --path="$path"  comment list --format=ids)" 
 }
 delete_widgets_function(){
     debug_function "$FUNCNAME"
     ##simple input only requires url and server type to function
-check_simple_input_function
+    check_simple_input_function
     #delete default widgets
     #sudo wp --allow-root --path=$path widget delete $(sudo wp --allow-root --path=$path widget list  --format=ids)
     #sudo wp --allow-root --path=$path widget reset --all
@@ -1162,7 +1120,6 @@ while [[ "$1" =~ ^- && ! "$1" == "--" ]]; do case $1 in
     -d or --domain will update domain to https and replace all links
     -divi or --install-divi will install Divi Theme
     -inpl or --install-plugins will install several selected plugins and activate them
-    -ig or --instaloader will download and import user's instagram post
     -m or --migrate will download a fresh wordpress folder
     -p or --permissions will run the permission script
     -pt or --plugintheme will config themes and plugins
