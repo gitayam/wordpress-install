@@ -1208,13 +1208,13 @@ else
         user_creation_function
         install_maria_db_function
         setup_WP_function
-        create_backup_function
+        #create_backup_function
     elif [ "$1" == "wordpress" ];then
         url="$2"
         user_input_simple_function
         user_creation_function
         setup_WP_function
-        create_backup_function
+        #create_backup_function
     elif [ "$1" == "server" ];then
         url="$2"
         user_input_simple_function
@@ -1226,7 +1226,7 @@ else
         user_creation_function
         install_maria_db_function
         setup_WP_function
-        create_backup_function
+        #create_backup_function
         
     fi
    echo "none"
