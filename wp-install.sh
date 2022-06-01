@@ -11,7 +11,7 @@ debug_function(){
 ##define defaults
 line="++---------------------------++----------------------------------++"
 ssh_username="base_username_here"
-email_domain="base_email_domain_here"
+email_domain="baseemail.com"
 script_path="/path/${script_name}"
 #link to divi theme used to download Divi from Elegant Themes
 divi_URL=""
