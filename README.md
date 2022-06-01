@@ -5,7 +5,7 @@ generate mariadb, apache or nginx server, and configure a basic wordpress websit
 # Install Configure and Use
 ## Install 
 Make sure `git` is installed and use the following command:
-`git clone https://github.com/gitayam/wordpress-install.git && chmod 755 wp-install.sh`
+`git clone https://github.com/gitayam/wordpress-install.git && ./wordpress-install/wp-install.sh`
 
 ## Configure
 You may update the following within the script
