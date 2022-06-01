@@ -1195,9 +1195,7 @@ debug_function encryption
 
 if [ "$OS" == "Darwin" ];then
     #prevent from running on mac if help menu isn't initiated
-    #print ssh information on mac
-    case $option in 
-        
+    #print ssh information on mac  
     print_ssh_function
     exit 2
 else
