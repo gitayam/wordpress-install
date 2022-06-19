@@ -46,7 +46,6 @@ print_ssh_function(){
     printf "%s---\nssh %s@%s\n\n" "$KEY" "$ssh_username" "$VALUE"
     done
 }
-
 if [ "$OS" == "Darwin" ];then
     #prevent from running on mac if help menu isn't initiated
     printf "\n%s\nPersonal Computer Detected, server check will not run\nUse -h to see all options\n%s\n" "$line" "$line"
